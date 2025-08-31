@@ -107,12 +107,11 @@ export default function MicroShiftParticles({ microShift, angularValue, animatio
   return (
     <points ref={pointsRef} geometry={geometry}>
       <pointsMaterial
-        vertexColors
+        color="#000000"
         transparent
-        opacity={0.6}
-        size={0.05}
+        opacity={0.4}
+        size={0.08}
         sizeAttenuation={false}
-        blending={THREE.AdditiveBlending}
       />
     </points>
   );

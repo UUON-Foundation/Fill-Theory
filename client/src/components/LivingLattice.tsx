@@ -104,9 +104,9 @@ export default function LivingLattice({ angularValue, microShift, animationSpeed
           {/* Node core */}
           <mesh>
             <octahedronGeometry args={[0.05, 0]} />
-            <meshPhongMaterial
-              color="#00ffaa"
-              emissive="#004422"
+            <meshStandardMaterial
+              color="#000000"
+              wireframe={true}
               transparent
               opacity={0.8}
             />
@@ -131,8 +131,9 @@ export default function LivingLattice({ angularValue, microShift, animationSpeed
                   ]}
                 >
                   <cylinderGeometry args={[0.005, 0.005, length]} />
-                  <meshBasicMaterial
-                    color="#4a90e2"
+                  <meshStandardMaterial
+                    color="#000000"
+                    wireframe={true}
                     transparent
                     opacity={0.4}
                   />
@@ -145,8 +146,9 @@ export default function LivingLattice({ angularValue, microShift, animationSpeed
           {/* Energy pulse indicators */}
           <mesh>
             <sphereGeometry args={[0.1, 8, 8]} />
-            <meshBasicMaterial
-              color="#ffffff"
+            <meshStandardMaterial
+              color="#000000"
+              wireframe={true}
               transparent
               opacity={0.1 + node.amplitude * 0.2}
             />
@@ -157,11 +159,11 @@ export default function LivingLattice({ angularValue, microShift, animationSpeed
       {/* Lattice boundary visualization */}
       <mesh>
         <boxGeometry args={[6, 6, 6]} />
-        <meshBasicMaterial
-          color="#4a90e2"
-          wireframe
+        <meshStandardMaterial
+          color="#000000"
+          wireframe={true}
           transparent
-          opacity={0.1}
+          opacity={0.2}
         />
       </mesh>
     </group>

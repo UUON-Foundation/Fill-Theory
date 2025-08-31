@@ -5,6 +5,7 @@ import HerculesPoint from './HerculesPoint';
 import MicroShiftParticles from './MicroShiftParticles';
 import HelicalOverlay from './HelicalOverlay';
 import LivingLattice from './LivingLattice';
+import PiPatchSystem from './PiPatchSystem';
 
 interface Props {
   angularValue: number;
@@ -12,6 +13,11 @@ interface Props {
   showHelices: boolean;
   showLattice: boolean;
   animationSpeed: number;
+  quantumPrecision: number;
+  piPatchIterations: number;
+  helixTurns: number;
+  nodeScale: number;
+  sceneType: 'base' | 'microshifted';
 }
 
 export default function FractionalFillVisualization({
@@ -19,17 +25,26 @@ export default function FractionalFillVisualization({
   microShift,
   showHelices,
   showLattice,
-  animationSpeed
+  animationSpeed,
+  quantumPrecision,
+  piPatchIterations,
+  helixTurns,
+  nodeScale,
+  sceneType
 }: Props) {
   const groupRef = useRef<Group>(null);
 
   return (
     <group ref={groupRef}>
-      {/* Main Angular Sphere */}
-      <AngularSphere 
-        angularValue={angularValue}
+      {/* π Patch Node System */}
+      <PiPatchSystem 
+        piPatchIterations={piPatchIterations}
         microShift={microShift}
-        animationSpeed={animationSpeed}
+        quantumPrecision={quantumPrecision}
+        helixTurns={helixTurns}
+        nodeScale={nodeScale}
+        rotationSpeed={animationSpeed}
+        sceneType={sceneType}
       />
       
       {/* Hercules Point - Primary Anchor */}
@@ -38,14 +53,14 @@ export default function FractionalFillVisualization({
         angularValue={angularValue}
       />
       
-      {/* Micro-shift Particle System */}
+      {/* Quantum Fill Particles */}
       <MicroShiftParticles 
         microShift={microShift}
         angularValue={angularValue}
         animationSpeed={animationSpeed}
       />
       
-      {/* Helical Overlay Patterns */}
+      {/* Helix Web Patterns */}
       {showHelices && (
         <HelicalOverlay 
           angularValue={angularValue}
@@ -54,7 +69,7 @@ export default function FractionalFillVisualization({
         />
       )}
       
-      {/* Living Lattice System */}
+      {/* Parallel Fill Grid */}
       {showLattice && (
         <LivingLattice 
           angularValue={angularValue}

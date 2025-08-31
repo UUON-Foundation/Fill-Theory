@@ -1,6 +1,6 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Mesh, SphereGeometry, MeshPhongMaterial, Color } from 'three';
+import { Mesh, SphereGeometry, MeshStandardMaterial, Color } from 'three';
 import * as THREE from 'three';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 export default function AngularSphere({ angularValue, microShift, animationSpeed }: Props) {
   const meshRef = useRef<Mesh>(null);
-  const materialRef = useRef<MeshPhongMaterial>(null);
+  const materialRef = useRef<MeshStandardMaterial>(null);
 
   // Create sphere geometry with high detail for smooth wraparound visualization
   const geometry = useMemo(() => new SphereGeometry(2, 64, 32), []);
@@ -56,23 +56,13 @@ export default function AngularSphere({ angularValue, microShift, animationSpeed
 
   return (
     <mesh ref={meshRef} geometry={geometry} castShadow receiveShadow>
-      <meshPhongMaterial
+      <meshStandardMaterial
         ref={materialRef}
-        color={color}
+        color="#000000"
+        wireframe={true}
         transparent
-        opacity={0.8}
-        wireframe={false}
+        opacity={0.7}
       />
-      
-      {/* Wireframe overlay to show angular grid */}
-      <mesh geometry={geometry}>
-        <meshBasicMaterial
-          color="#ffffff"
-          wireframe
-          transparent
-          opacity={0.1}
-        />
-      </mesh>
       
       {/* Angular degree markers */}
       {Array.from({ length: 36 }, (_, i) => {
@@ -83,11 +73,12 @@ export default function AngularSphere({ angularValue, microShift, animationSpeed
         
         return (
           <mesh key={i} position={[x, 0, z]}>
-            <sphereGeometry args={[0.02, 8, 8]} />
-            <meshBasicMaterial 
-              color={isNearCurrent ? "#ffff00" : "#888888"}
+            <sphereGeometry args={[0.03, 8, 8]} />
+            <meshStandardMaterial 
+              color="#000000"
+              wireframe={true}
               transparent
-              opacity={isNearCurrent ? 0.9 : 0.3}
+              opacity={isNearCurrent ? 0.9 : 0.4}
             />
           </mesh>
         );

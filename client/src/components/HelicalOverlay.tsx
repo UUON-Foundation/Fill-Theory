@@ -77,10 +77,11 @@ export default function HelicalOverlay({ angularValue, microShift, animationSpee
     <group ref={groupRef}>
       {helices.map((helix, index) => (
         <mesh key={index} geometry={helix.geometry}>
-          <meshBasicMaterial
-            color={helix.color}
+          <meshStandardMaterial
+            color="#000000"
+            wireframe={true}
             transparent
-            opacity={0.4}
+            opacity={0.6}
           />
         </mesh>
       ))}
@@ -109,10 +110,11 @@ export default function HelicalOverlay({ angularValue, microShift, animationSpee
                 rotation={[0, angle, 0]}
               >
                 <boxGeometry args={[length, 0.01, 0.01]} />
-                <meshBasicMaterial
-                  color="#4a90e2"
+                <meshStandardMaterial
+                  color="#000000"
+                  wireframe={true}
                   transparent
-                  opacity={0.3}
+                  opacity={0.4}
                 />
               </mesh>
             );

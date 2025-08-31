@@ -49,10 +49,11 @@ export default function HerculesPoint({ position, angularValue }: Props) {
       {/* Core Hercules Point */}
       <mesh ref={coreRef}>
         <icosahedronGeometry args={[0.15, 2]} />
-        <meshPhongMaterial
-          color="#ffd700"
-          emissive="#ffaa00"
-          emissiveIntensity={0.4}
+        <meshStandardMaterial
+          color="#000000"
+          wireframe={true}
+          transparent
+          opacity={0.8}
         />
       </mesh>
       
@@ -60,9 +61,10 @@ export default function HerculesPoint({ position, angularValue }: Props) {
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <ringGeometry args={[0.8, 0.82, 32]} />
         <meshBasicMaterial
-          color="#ffd700"
+          color="#000000"
+          wireframe={true}
           transparent
-          opacity={0.3}
+          opacity={0.5}
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -71,10 +73,11 @@ export default function HerculesPoint({ position, angularValue }: Props) {
       {constellationPoints.map((point, i) => (
         <mesh key={i} position={[point.x, point.y, point.z]}>
           <sphereGeometry args={[0.02, 8, 8]} />
-          <meshBasicMaterial
-            color="#ffffff"
+          <meshStandardMaterial
+            color="#000000"
+            wireframe={true}
             transparent
-            opacity={point.intensity}
+            opacity={point.intensity * 0.7}
           />
         </mesh>
       ))}
@@ -89,8 +92,9 @@ export default function HerculesPoint({ position, angularValue }: Props) {
         return (
           <mesh key={`connection-${i}`} position={[midX, midY, midZ]}>
             <boxGeometry args={[0.01, 0.01, 0.2]} />
-            <meshBasicMaterial
-              color="#4a90e2"
+            <meshStandardMaterial
+              color="#000000"
+              wireframe={true}
               transparent
               opacity={0.4}
             />
