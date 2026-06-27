@@ -82,6 +82,69 @@ export default function ControlPanel({
       
       {isExpanded && (
         <CardContent className="space-y-4" style={{ fontFamily: 'Courier New, monospace' }}>
+          python3 << 'EOF'
+import re
+
+with open('client/src/components/ControlPanel.tsx', 'r') as f:
+    content = f.read()
+
+insert_block = '''
+          {/* Angular Value — direct input + presets (newly wired; previously dead code) */}
+          <div className="space-y-2">
+            <Label className="text-sm font-medium" style={{ color: '#333', fontWeight: 'bold' }}>
+              Angular Value (°):
+            </Label>
+            <Input
+              type="text"
+              value={inputValue}
+              onChange={(e) => handleAngularInput(e.target.value)}
+              style={{
+                fontFamily: 'Courier New, monospace',
+                fontSize: '11px',
+                background: '#f5f5f5',
+                border: '1px solid #ccc',
+                color: '#333'
+              }}
+            />
+            <div className="grid grid-cols-4 gap-1">
+              {presetAngles.map((angle) => (
+                <Button
+                  key={angle}
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setAngularValue(angle);
+                    setInputValue(angle.toString());
+                  }}
+                  style={{
+                    background: angularValue === angle ? '#ddd' : '#f5f5f5',
+                    border: '1px solid #ccc',
+                    color: '#333',
+                    fontFamily: 'Courier New, monospace',
+                    fontSize: '10px',
+                    padding: '2px 4px'
+                  }}
+                >
+                  {angle}
+                </Button>
+              ))}
+            </div>
+            <p className="text-xs" style={{ color: '#777', fontSize: '10px', fontFamily: 'Courier New, monospace' }}>
+              Note: the 359.999 / 359.9999 / 359.99999 sequence is this app's symbolic premise —
+              an asymptotic approach to 360°, not a measured hardware limit.
+            </p>
+          </div>
+'''
+
+marker = "fontFamily: 'Courier New, monospace' }}>"
+idx = content.find(marker) + len(marker)
+new_content = content[:idx] + insert_block + content[idx:]
+
+with open('client/src/components/ControlPanel.tsx', 'w') as f:
+    f.write(new_content)
+
+print("Inserted successfully")
+EOF
           {/* Angular Value Control */}
           <div className="space-y-2">
             <Label className="text-sm font-medium" style={{ color: '#333', fontWeight: 'bold' }}>Micro-Shift (δ):</Label>
