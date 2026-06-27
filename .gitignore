@@ -1,2 +1,49 @@
+# === Dependencies ===
 node_modules/
+
+# === Build output ===
+dist/
+dist-ssr/
+*.local
+
+# === Environment & secrets ===
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+neon-railway-example/.env
+
+# === Logs ===
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Editor / OS / Replit / local state ===
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.cache/
+.config/
+.local/
+.upm/
+.neon/
+.agents/
+.replit
+replit.md
+
+# === Database ===
+*.sqlite
+*.db
+
+# === Misc local examples / scratch ===
+neon-railway-example/
+
+# =========================================================
+# PROPRIETARY / TRADE SECRET — name exact files/folders below
+# once confirmed. Folder-level convention doesn't exist yet
+# in this repo, so wildcard guesses are intentionally omitted.
+# =========================================================
