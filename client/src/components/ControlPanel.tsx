@@ -123,7 +123,7 @@ export default function ControlPanel({
       </CardHeader>
       
       {isExpanded && (
-        <CardContent className="space-y-4" style={{ fontFamily: 'Courier New, monospace' }}>
+        <CardContent className="space-y-4" style={{ fontFamily: 'Courier New, monospace', maxHeight: '80vh', overflowY: 'auto' }}>
 
           {/* Angular Value — direct input + presets (newly wired; previously dead code) */}
           <div className="space-y-2">
