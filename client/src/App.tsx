@@ -10,7 +10,7 @@ function App() {
   const [microShift, setMicroShift] = useState(0.001);
   const [showHelices, setShowHelices] = useState(true);
   const [showLattice, setShowLattice] = useState(true);
-  const [animationSpeed, setAnimationSpeed] = useState(1);
+  const [animationSpeed, setAnimationSpeed] = useState(0.015);
   const [quantumPrecision, setQuantumPrecision] = useState(12);
   const [piPatchIterations, setPiPatchIterations] = useState(50);
   const [helixTurns, setHelixTurns] = useState(5);
